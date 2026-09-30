@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: ecommerce-api
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/ecommerce}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: ${PORT:8080}
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:change-this-to-a-long-random-secret-value-min-32-bytes}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}   # 24 hours
+
+stripe:
+  secret-key: ${STRIPE_SECRET_KEY:sk_test_placeholder}
+  webhook-secret: ${STRIPE_WEBHOOK_SECRET:whsec_placeholder}
+  currency: ${STRIPE_CURRENCY:usd}
+
+logging:
+  level:
+    com.abhishek.ecommerce: INFO
